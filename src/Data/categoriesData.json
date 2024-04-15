@@ -1,0 +1,6 @@
+[
+    {"id": 1, "name": "Deportes", "imageUrl": "https://cdn-icons-png.flaticon.com/512/4345/4345049.png"},
+    {"id": 2, "name": "Gastronomia", "imageUrl": "https://cdn-icons-png.flaticon.com/512/1980/1980832.png"},
+    {"id": 3, "name": "Salud", "imageUrl": "https://cdn-icons-png.flaticon.com/512/2522/2522518.png"},
+    {"id": 4, "name": "Entretenimiento", "imageUrl": "https://cdn-icons-png.flaticon.com/512/7498/7498146.png"}
+]
