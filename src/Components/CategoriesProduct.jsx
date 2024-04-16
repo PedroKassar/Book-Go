@@ -2,28 +2,28 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import { colors } from '../Constants/colors'
 
-const CategorieCard = ({categorie}) => {
+const CategoriesProduct = ({productCategory}) => {
     return (
-        <View style={styles.categorieCardContainer}>
-            <View style={styles.categorieCard}>
-                <Image source={{uri: categorie.imageUrl}} style={styles.categorieImage}/>
-                <Text>{categorie.name}</Text>
+        <View style={styles.categoryCardContainer}>
+            <View style={styles.categoryCard}>
+                    <Image source={{uri: productCategory.imageUrl}} style={styles.categoryImage}/>
+                    <Text>{productCategory.name}</Text>
             </View>
         </View>
     )
 }
 
-export default CategorieCard
+export default CategoriesProduct
 
 const styles = StyleSheet.create({
-    categorieCardContainer:{
+    categoryCardContainer:{
         width: "50%",
     },
-    categorieImage:{
+    categoryImage:{
         padding: "40%",
         margin: 10,
     },
-    categorieCard:{
+    categoryCard:{
         alignItems: "center",
         backgroundColor: colors.color0,
         margin:10,

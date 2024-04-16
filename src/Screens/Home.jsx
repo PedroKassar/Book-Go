@@ -1,15 +1,15 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { StyleSheet, View, FlatList } from 'react-native'
 import React from 'react'
 import categoriesData from '../Data/categoriesData'
-import CategorieCard from '../Components/CategorieCard'
+import CategoryCard from '../Components/CategoryCard'
 import { colors } from '../Constants/colors'
 
-const Home = () => {
+const Home = ({navigation}) => {
     return (
         <View style={styles.homeContainer}>
             <FlatList 
                 data={categoriesData}
-                renderItem={({item}) => <CategorieCard categorie={item}/>}
+                renderItem={({item}) => <CategoryCard category={item} navigation={navigation}/>}
                 keyExtractor={item => item.id.toString()}
                 numColumns={2}
             />
@@ -21,7 +21,7 @@ export default Home
 
 const styles = StyleSheet.create({
     homeContainer:{
-        height: "83%",
+        height: "100%",
         width: "100%",
         backgroundColor: colors.color1,
     },
