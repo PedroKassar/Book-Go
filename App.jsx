@@ -9,7 +9,6 @@ import Navigator from './src/Navigation/Navigator';
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Header/>
       <Navigator/>
       <Footer/>
     </SafeAreaView>

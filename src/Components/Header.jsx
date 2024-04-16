@@ -19,19 +19,20 @@ export default Header
 
 const styles = StyleSheet.create({
     headerContainer:{
-        height: "10%",
         flexDirection: "row",
         justifyContent: "space-evenly",
         width: "100%",
-        backgroundColor: colors.color2
+        backgroundColor: colors.color2,
+        padding: 10
     },
     searcher:{
         flexDirection: "row",
         padding: 5,
+        paddingRight: 25,
         borderRadius: 10,
         width: "80%",
         backgroundColor: colors.color0,
-        height: "50%",
+        height: "100%",
         alignSelf: "center"
     },
     searcherIcons:{
