@@ -12,8 +12,8 @@ const Navigator = () => {
     return (
         <NavigationContainer style={styles.navContainer}>
             <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen name="Home" component={Home} options={{header: ()=> <Header/>}}/>
-                <Stack.Screen name="ProductCategories" component={ProductCategories} options={{header: ()=> <Header/>}}/>
+                <Stack.Screen name="Home" component={Home} options={({navigation}) => ({header: ()=> <Header navigation={navigation}/>})}/>
+                <Stack.Screen name="ProductCategories" component={ProductCategories} options={({navigation}) => ({header: ()=> <Header navigation={navigation}/>})}/>
             </Stack.Navigator>
         </NavigationContainer>
     )

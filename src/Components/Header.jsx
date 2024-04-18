@@ -1,11 +1,13 @@
-import { StyleSheet, View, TextInput } from 'react-native'
+import { StyleSheet, View, TextInput, TouchableOpacity, Text } from 'react-native'
 import React from 'react'
-import { MaterialIcons, EvilIcons } from '@expo/vector-icons';
+import { MaterialIcons, EvilIcons, AntDesign } from '@expo/vector-icons';
 import { colors } from '../Constants/colors';
 
-const Header = () => {
+const Header = ({navigation}) => {
+    const goBackButton = navigation.canGoBack()
     return (
         <View style={styles.headerContainer}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>{goBackButton && <AntDesign name="back" size={24} color={colors.color0} />}</TouchableOpacity>
             <View style={styles.searcher}>
                 <EvilIcons style={styles.searcherIcons} name="search" size={24} color="black" />
                 <TextInput style={styles.searcherInput} placeholder='Busca que reservar'/>
