@@ -3,20 +3,34 @@ import React from 'react'
 import categoriesProductsData from '../Data/categoriesProductsData.json'
 import CategoriesProduct from '../Components/CategoriesProduct'
 import { colors } from '../Constants/colors'
+import productsData from '../Data/productsData.json'
 
 const ProductCategories = ({navigation, route}) => {
 
     const {category} = route.params
-    const filteredProducts = categoriesProductsData.filter(product => product.category === category)
-
+    const combinedData = categoriesProductsData.concat(productsData)
+    const filteredProductCategories = combinedData.filter(product => product.category === category)
+    
+    const isGastronomia = category === "Gastronomia"
+    
     return (
         <View style={styles.productCategoriesContainer}>
+            {!isGastronomia &&(            
             <FlatList
-                data={filteredProducts}
-                renderItem={({item}) => <CategoriesProduct productCategory={item}/>}
+                data={filteredProductCategories}
+                renderItem={({item}) => <CategoriesProduct productCategory={item} navigation={navigation}/>}
                 keyExtractor={item => item.id.toString()}
                 numColumns={2}
             />
+            )}
+            {isGastronomia &&(
+            <FlatList
+                data={filteredProductCategories}
+                renderItem={({item}) => <CategoriesProduct productCategory={item} navigation={navigation}/>}
+                keyExtractor={item => item.id.toString()}
+                numColumns={1}
+            />
+            )}
         </View>
     )
 }

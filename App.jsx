@@ -1,9 +1,6 @@
 import { SafeAreaView, StyleSheet, Platform, StatusBar, } from 'react-native';
-import Home from './src/Screens/Home';
-import Header from './src/Components/Header';
 import Footer from './src/Components/Footer';
 import { colors } from './src/Constants/colors';
-import ProductCategories from './src/Screens/ProductCategories';
 import Navigator from './src/Navigation/Navigator';
 
 export default function App() {
