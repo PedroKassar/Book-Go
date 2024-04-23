@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         padding: 5,
         borderRadius: 10,
-        width: "80%",
         backgroundColor: colors.color0,
         height: "100%",
         alignSelf: "center"
@@ -40,6 +39,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
     },
     searcherInput:{
-        paddingHorizontal: 5
+        paddingHorizontal: 5,
+        width: "75%",
     }
 })
