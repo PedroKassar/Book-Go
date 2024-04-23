@@ -15,22 +15,12 @@ const ProductCategories = ({navigation, route}) => {
     
     return (
         <View style={styles.productCategoriesContainer}>
-            {!isGastronomia &&(            
             <FlatList
                 data={filteredProductCategories}
                 renderItem={({item}) => <CategoriesProduct productCategory={item} navigation={navigation}/>}
                 keyExtractor={item => item.id.toString()}
-                numColumns={2}
+                numColumns={!isGastronomia ? 2 : 1}
             />
-            )}
-            {isGastronomia &&(
-            <FlatList
-                data={filteredProductCategories}
-                renderItem={({item}) => <CategoriesProduct productCategory={item} navigation={navigation}/>}
-                keyExtractor={item => item.id.toString()}
-                numColumns={1}
-            />
-            )}
         </View>
     )
 }

@@ -2,6 +2,7 @@ import { SafeAreaView, StyleSheet, Platform, StatusBar, } from 'react-native';
 import Footer from './src/Components/Footer';
 import { colors } from './src/Constants/colors';
 import Navigator from './src/Navigation/Navigator';
+import React from 'react'
 
 export default function App() {
   return (
