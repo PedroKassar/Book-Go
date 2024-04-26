@@ -6,7 +6,7 @@ import { colors } from '../Constants/colors'
 const CategoryCard = ({category, navigation}) => {
     return (
         <View style={styles.categoryCardContainer}>
-            <TouchableOpacity onPress={()=> navigation.navigate('ProductCategories', {category: category.name})}>
+            <TouchableOpacity onPress={()=> navigation.navigate('Products', {category: category.name})}>
                 <View style={styles.categoryCard}>
                     <Image source={{uri: category.imageUrl}} style={styles.categoryImage}/>
                     <Text>{category.name}</Text>

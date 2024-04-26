@@ -15,10 +15,10 @@ const TabNavigator = () => {
     return (
         <NavigationContainer>
             <Tab.Navigator screenOptions={{tabBarShowLabel: false, headerShown: false, tabBarStyle: styles.tabBar}}>
-                <Tab.Screen name="Navigator" component={Navigator} options={{tabBarIcon: ()=>(<Ionicons name="home-outline" size={24} color={colors.color1}/>)}}/>
-                <Tab.Screen name="Favorites" component={Favorites} options={{tabBarIcon: ()=>(<Ionicons name="heart-outline" size={24} color={colors.color1}/>)}}/>
-                <Tab.Screen name="Notifications" component={Notifications} options={{tabBarIcon: ()=>(<Ionicons name="notifications-outline" size={24} color={colors.color1}/>)}}/>
-                <Tab.Screen name="Menu" component={Menu} options={{tabBarIcon: ()=>(<SimpleLineIcons name="menu" size={24} color={colors.color1}/>)}}/>
+                <Tab.Screen name="Navigator" component={Navigator} options={{tabBarIcon: ()=>(<Ionicons name="home-outline" size={24} color={colors.color2}/>)}}/>
+                <Tab.Screen name="Favorites" component={Favorites} options={{tabBarIcon: ()=>(<Ionicons name="heart-outline" size={24} color={colors.color2}/>)}}/>
+                <Tab.Screen name="Notifications" component={Notifications} options={{tabBarIcon: ()=>(<Ionicons name="notifications-outline" size={24} color={colors.color2}/>)}}/>
+                <Tab.Screen name="Menu" component={Menu} options={{tabBarIcon: ()=>(<SimpleLineIcons name="menu" size={24} color={colors.color2}/>)}}/>
             </Tab.Navigator>
         </NavigationContainer>
     )
@@ -28,8 +28,8 @@ export default TabNavigator
 
 const styles = StyleSheet.create({
     tabBar:{
-        backgroundColor: colors.color2,
+        backgroundColor: colors.color0,
         borderTopWidth: 2,
-        borderTopColor: colors.color3,
+        borderTopColor: colors.color2,
     }
 })

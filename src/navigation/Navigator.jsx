@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Home from '../Screens/Home'
-import ProductCategories from '../Screens/ProductCategories'
 import Header from '../Components/Header'
 import Products from '../Screens/Products'
 import productsData from '../Data/productsData.json'
@@ -24,7 +23,6 @@ const Navigator = () => {
                 <Stack.Screen name="Home" options={({navigation}) => ({header: ()=> <Header navigation={navigation} handleSearch={handleSearch} searchTerm={searchTerm}/>})}>
                 {props => <Home {...props} handleSearch={handleSearch} searchTerm={searchTerm}/>}
                 </Stack.Screen>
-                <Stack.Screen name="ProductCategories" component={ProductCategories} options={({navigation}) => ({header: ()=> <Header navigation={navigation} handleSearch={handleSearch} searchTerm={searchTerm}/>})}/>
                 <Stack.Screen name="Products" component={Products} options={({navigation}) => ({header: ()=> <Header navigation={navigation} handleSearch={handleSearch} searchTerm={searchTerm}/>})}/>
             </Stack.Navigator>
     )
