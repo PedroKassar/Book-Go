@@ -7,7 +7,7 @@ const Product = ({product}) => {
         <View style={styles.productCardContainer}>
             <View style={styles.productCard}>
                     <Image source={{uri: product.imageUrl}} style={styles.productImage}/>
-                    <Text>{product.name}</Text>
+                    <Text style={styles.productText}>{product.name}</Text>
             </View>
         </View>
     )
@@ -21,8 +21,10 @@ const styles = StyleSheet.create({
     },
     productImage:{
         padding: "20%",
+        borderRadius: 10,
     },
     productCard:{
+        flexDirection: "row",
         alignItems: "center",
         backgroundColor: colors.color0,
         margin:10,
@@ -33,5 +35,9 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 5,
+        gap: "40%",
+    },
+    productText:{
+        width: "40%"
     }
 })

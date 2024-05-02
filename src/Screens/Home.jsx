@@ -1,20 +1,21 @@
 import { StyleSheet, View, FlatList } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import categoriesData from '../Data/categoriesData'
 import CategoryCard from '../Components/CategoryCard'
 import { colors } from '../Constants/colors'
-import productsData from '../Data/productsData.json'
 import ProductCard from '../Components/ProductCard'
+import { useGetCategoriesQuery, useGetProductsByCategoryQuery } from '../Services/shopApi'
 
 const Home = ({navigation, searchTerm}) => {
-    const [filteredSearch, setFilteredSearch] = useState(productsData);
+    const {data: categories, error, isLoading} = useGetCategoriesQuery()
+    const {data: products } = useGetProductsByCategoryQuery()
+    const [filteredSearch, setFilteredSearch] = useState(products);
 
     useEffect(() => {
         if (searchTerm) {
-            const filtered = productsData.filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
+            const filtered = products.filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
             setFilteredSearch(filtered);
         } else {
-            setFilteredSearch(productsData);
+            setFilteredSearch(products);
         }
     }, [searchTerm]);
 
@@ -22,7 +23,7 @@ const Home = ({navigation, searchTerm}) => {
         <View style={styles.homeContainer}>
                 {!searchTerm &&(
                     <FlatList 
-                        data={categoriesData}
+                        data={categories}
                         renderItem={({item}) => <CategoryCard category={item} navigation={navigation}/>}
                         keyExtractor={item => item.id.toString()}
                         numColumns={2}

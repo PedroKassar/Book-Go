@@ -4,17 +4,18 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Home from '../Screens/Home'
 import Header from '../Components/Header'
 import Products from '../Screens/Products'
-import productsData from '../Data/productsData.json'
+import { useGetProductsByCategoryQuery } from '../Services/shopApi'
 
 const Stack = createNativeStackNavigator()
 
 const Navigator = () => {
+    const {data: products, error, isLoading} = useGetProductsByCategoryQuery()
     const [searchTerm, setSearchTerm] = useState('')
-    const [filteredSearch, setFilteredSearch] = useState(productsData)
+    const [filteredSearch, setFilteredSearch] = useState(products)
 
     const handleSearch = (term) => {
         setSearchTerm(term)
-        const filteredProducts = productsData.filter(product => product.name.toLowerCase().includes(term.toLowerCase()))
+        const filteredProducts = products.filter(product => product.name.toLowerCase().includes(term.toLowerCase()))
         setFilteredSearch(filteredProducts)
     }
 

@@ -1,0 +1,1 @@
+export const baseUrl = "https://bookandgo-52ef0-default-rtdb.firebaseio.com/"

@@ -1,12 +1,16 @@
-import { SafeAreaView, StyleSheet, Platform, StatusBar, View } from 'react-native';
+import { StyleSheet, Platform, StatusBar, View } from 'react-native';
 import { colors } from './src/Constants/colors';
 import React from 'react'
 import TabNavigator from './src/Navigation/TabNavigator';
+import { Provider } from 'react-redux';
+import store from './src/Store'
 
 export default function App() {
   return (
     <View style={styles.container} forceInset={{ bottom: 'never' }}>
-      <TabNavigator/>
+      <Provider store={store}>
+        <TabNavigator/>
+      </Provider>
     </View>
   );
 }
