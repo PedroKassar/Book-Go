@@ -8,6 +8,9 @@ export const shopApi = createApi({
         getCategories: builder.query({
             query: () => `categories.json`
         }),
+        getProducts: builder.query({
+            query: () => `products.json`
+        }),
         getSubCategoriesByCategory: builder.query({
             query: (category) => `subCategories.json?orderBy="category"&equalTo="${category}"`,
             transformResponse: (response) => {
@@ -33,4 +36,4 @@ export const shopApi = createApi({
 
 })
 
-export const { useGetCategoriesQuery, useGetSubCategoriesByCategoryQuery, useGetProductsByCategoryQuery, useGetProductsBySubCategoryQuery} = shopApi
+export const { useGetCategoriesQuery, useGetProductsQuery, useGetSubCategoriesByCategoryQuery, useGetProductsByCategoryQuery, useGetProductsBySubCategoryQuery} = shopApi

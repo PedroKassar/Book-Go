@@ -1,16 +1,30 @@
 import { StyleSheet, View, TextInput, TouchableOpacity, Text } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { MaterialIcons, EvilIcons, AntDesign } from '@expo/vector-icons';
 import { colors } from '../Constants/colors';
+import { useGetProductsQuery } from '../Services/shopApi';
 
-const Header = ({navigation, handleSearch}) => {
+const Header = ({navigation, setFilteredProducts, setSearchQuery, searchQuery}) => {
+    
+    const {data: products, error, isLoading} = useGetProductsQuery()
     const goBackButton = navigation.canGoBack()
+
+    const handleSearch = (text) => {
+        setSearchQuery(text)
+        const filteredProducts = products.filter(product => {
+            const productName = product.name.toLowerCase()
+            const searchLetters = text.toLowerCase()
+            return productName.startsWith(searchLetters)
+        })
+        setFilteredProducts(filteredProducts)
+    }
+
     return (
         <View style={styles.headerContainer}>
             <TouchableOpacity onPress={() => navigation.goBack()}>{goBackButton && <AntDesign name="back" size={24} color={colors.color0} />}</TouchableOpacity>
             <View style={styles.searcher}>
                 <EvilIcons style={styles.searcherIcons} name="search" size={24} color="black" />
-                <TextInput style={styles.searcherInput} placeholder='Busca que reservar' onChangeText={handleSearch}/>
+                <TextInput style={styles.searcherInput} placeholder='Busca que reservar' value={searchQuery} onChangeText={handleSearch} />
             </View>
             <MaterialIcons style={styles.searcherIcons} name="schedule" size={24} color={colors.color0} />
         </View>
