@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Home from '../Screens/Home'
 import Header from '../Components/Header'
 import Products from '../Screens/Products'
+import ProductDetail from '../Screens/ProductDetail'
 
 
 const Stack = createNativeStackNavigator()
@@ -19,6 +20,7 @@ const Navigator = () => {
                 {props => <Home {...props} filteredProducts={filteredProducts} searchQuery={searchQuery}/>} 
                 </Stack.Screen>
                 <Stack.Screen name="Products" component={Products} options={({navigation}) => ({header: ()=> <Header navigation={navigation} />})}/>
+                <Stack.Screen name="ProductDetail" component={ProductDetail} options={({navigation}) => ({header: ()=> <Header navigation={navigation} />})}/>
             </Stack.Navigator>
     )
 }

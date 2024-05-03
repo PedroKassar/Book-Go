@@ -24,16 +24,9 @@ export const shopApi = createApi({
                 const responseTransformed = Object.values(response)
                 return responseTransformed
             }
-        }),
-        getProductsBySubCategory: builder.query({
-            query: (subCategories) => `products.json?orderBy="subCategories"&equalTo="${subCategories}"`,
-            transformResponse: (response) => {
-                const responseTransformed = Object.values(response)
-                return responseTransformed
-            }
         })
     })
 
 })
 
-export const { useGetCategoriesQuery, useGetProductsQuery, useGetSubCategoriesByCategoryQuery, useGetProductsByCategoryQuery, useGetProductsBySubCategoryQuery} = shopApi
+export const { useGetCategoriesQuery, useGetProductsQuery, useGetSubCategoriesByCategoryQuery, useGetProductsByCategoryQuery} = shopApi

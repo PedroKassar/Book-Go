@@ -1,14 +1,16 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { colors } from '../Constants/colors'
 
-const Product = ({product}) => {
+const Product = ({product, navigation}) => {
     return (
         <View style={styles.productCardContainer}>
-            <View style={styles.productCard}>
+            <TouchableOpacity onPress={()=> navigation.navigate('ProductDetail', {product}) }>
+                <View style={styles.productCard}>
                     <Image source={{uri: product.imageUrl}} style={styles.productImage}/>
                     <Text style={styles.productText}>{product.name}</Text>
-            </View>
+                </View>
+            </TouchableOpacity>
         </View>
     )
 }
