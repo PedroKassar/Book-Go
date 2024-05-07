@@ -1,7 +1,7 @@
 import { StyleSheet, Platform, StatusBar, View } from 'react-native';
 import { colors } from './src/Constants/colors';
 import React from 'react'
-import TabNavigator from './src/Navigation/TabNavigator';
+import MainNavigator from './src/Navigation/MainNavigator';
 import { Provider } from 'react-redux';
 import store from './src/Store'
 
@@ -9,7 +9,7 @@ export default function App() {
   return (
     <View style={styles.container} forceInset={{ bottom: 'never' }}>
       <Provider store={store}>
-        <TabNavigator/>
+        <MainNavigator/>
       </Provider>
     </View>
   );
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     paddingTop: 40
   },
-});
+})
