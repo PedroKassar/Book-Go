@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 5,
-        gap: "40%",
+        gap: 40
     },
     productText:{
         width: "40%"

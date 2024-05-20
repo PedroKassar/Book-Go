@@ -4,6 +4,7 @@ import CategoryCard from '../Components/CategoryCard'
 import { colors } from '../Constants/colors'
 import ProductCard from '../Components/ProductCard'
 import { useGetCategoriesQuery } from '../Services/shopApi'
+import Map from '../Components/Map'
 
 const Home = ({navigation, filteredProducts, searchQuery }) => {
     const {data: categories, error, isLoading} = useGetCategoriesQuery()
@@ -11,15 +12,20 @@ const Home = ({navigation, filteredProducts, searchQuery }) => {
     return (
         <View style={styles.homeContainer}>
             {!searchQuery &&(
-                <FlatList 
+                <View style={styles.mapContainer}>
+                    <Map/>
+                </View>
+            )}
+            {!searchQuery &&(
+                <FlatList
                     data={categories}
                     renderItem={({item}) => <CategoryCard category={item} navigation={navigation}/>}
                     keyExtractor={item => item.id.toString()}
                     numColumns={2}
-                />
+                    />
             )}
             {searchQuery &&(
-                <FlatList 
+                <FlatList
                     data={filteredProducts}
                     renderItem={({item}) => <ProductCard product={item} navigation={navigation}/>}
                     keyExtractor={item => item.id.toString()}
@@ -38,5 +44,8 @@ const styles = StyleSheet.create({
         width: "100%",
         backgroundColor: colors.color1,
     },
-
+    mapContainer:{
+        height: "30%",
+        marginTop: 20
+    },
 })

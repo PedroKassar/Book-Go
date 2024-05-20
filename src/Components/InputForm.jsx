@@ -19,7 +19,7 @@ const InputForm = ({label, onChange, error = "", isSecure = false,}) => {
                 onChangeText={onChangeText}
                 secureTextEntry={isSecure}
             />
-            {error ? <Text>{error}</Text> : null}
+            {error ? <Text style={styles.error}>{error}</Text> : null}
         </View>
     )
 }
@@ -40,5 +40,9 @@ const styles = StyleSheet.create({
     },
     input:{
         paddingVertical: 5
+    },
+    error:{
+        color: "red",
+        fontSize: 12
     }
 })

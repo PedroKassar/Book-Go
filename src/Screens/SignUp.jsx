@@ -6,14 +6,18 @@ import SubmitButton from '../Components/SubmitButton'
 import { useSignUpMutation } from '../Services/authApi'
 import { setUser } from '../Features/User/userSlice'
 import { useDispatch } from 'react-redux'
+import { signUpSchema } from '../Validations/signUpSchema'
 
 
 const SignUp = ({navigation}) => {
 
+    const [triggerSignUp, result] = useSignUpMutation()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
-    const [triggerSignUp, result] = useSignUpMutation()
+    const [errorMail, setErrorMail] = useState("")
+    const [errorPassword, setErrorPassword] = useState("")
+    const [errorConfirmPassword, setErrorConfirmPassword] = useState("")
 
     const dispatch = useDispatch()
 
@@ -29,7 +33,24 @@ const SignUp = ({navigation}) => {
     }, [result])
 
     const onSubmit = () => {
-        triggerSignUp({email, password, returnSecureToken: true})
+        try {
+            const validation = signUpSchema.validateSync({email, password, confirmPassword})
+            triggerSignUp({email, password, returnSecureToken: true})
+        } catch (err) {
+            switch (err.path) {
+                case 'email':
+                    setErrorMail(err.message)
+                    break;
+                case 'password':
+                    setErrorPassword(err.message)
+                    break;
+                case 'confirmPassword':
+                    setErrorConfirmPassword(err.message)
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     return (
@@ -39,18 +60,18 @@ const SignUp = ({navigation}) => {
                 <InputForm
                     label={"email"}
                     onChange={setEmail}
-                    error={""}
+                    error={errorMail}
                 />
                 <InputForm
                     label={"password"}
                     onChange={setPassword}
-                    error={""}
+                    error={errorPassword}
                     isSecure={true}
                 />
                 <InputForm
                     label={"confirm password"}
                     onChange={setConfirmPassword}
-                    error={""}
+                    error={errorConfirmPassword}
                     isSecure={true}
                 />
                 <SubmitButton
