@@ -6,6 +6,7 @@ import SubmitButton from '../Components/SubmitButton'
 import { useDispatch } from 'react-redux'
 import { useLoginMutation } from '../Services/authApi'
 import { setUser } from '../Features/User/userSlice'
+import { insertSession } from '../Persistence'
 
 const Login = ({navigation}) => {
 
@@ -15,13 +16,23 @@ const Login = ({navigation}) => {
     const [password, setPassword] = useState()
 
     useEffect(() => {
-        if (result.isSuccess) {
-            dispatch(
-                setUser({
-                    email: result.data.email,
-                    idToken: result.data.idToken,
+        if (result?.data && result.isSuccess) {
+            insertSession({
+                email: result.data.email,
+                localId: result.data.localId,
+                token: result.data.idToken,
+            })
+                .then((response) => {
+                    dispatch(
+                        setUser({
+                            email: result.data.email,
+                            idToken: result.data.idToken,
+                            localId: result.data.localId,
+                        })
+                    )
                 })
-            )
+                .catch((err) => {
+                })
         }
     }, [result])
 

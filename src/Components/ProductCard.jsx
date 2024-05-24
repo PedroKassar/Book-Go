@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { colors } from '../Constants/colors'
 
-const Product = ({product, navigation}) => {
+const ProductCard = ({product, navigation}) => {
     return (
         <View style={styles.productCardContainer}>
             <TouchableOpacity onPress={()=> navigation.navigate('ProductDetail', {product}) }>
@@ -15,7 +15,7 @@ const Product = ({product, navigation}) => {
     )
 }
 
-export default Product
+export default ProductCard
 
 const styles = StyleSheet.create({
     productCardContainer:{

@@ -6,7 +6,7 @@ import ProductCard from '../Components/ProductCard'
 import { useGetCategoriesQuery } from '../Services/shopApi'
 import Map from '../Components/Map'
 
-const Home = ({navigation, filteredProducts, searchQuery }) => {
+const Home = ({navigation, searchFilteredProducts, searchQuery }) => {
     const {data: categories, error, isLoading} = useGetCategoriesQuery()
 
     return (
@@ -26,7 +26,7 @@ const Home = ({navigation, filteredProducts, searchQuery }) => {
             )}
             {searchQuery &&(
                 <FlatList
-                    data={filteredProducts}
+                    data={searchFilteredProducts}
                     renderItem={({item}) => <ProductCard product={item} navigation={navigation}/>}
                     keyExtractor={item => item.id.toString()}
                     numColumns={1}

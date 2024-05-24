@@ -4,12 +4,15 @@ import { Ionicons } from '@expo/vector-icons'
 import { colors } from '../Constants/colors'
 
 const ProductDetail = ({route}) => {
-    const {product} = route.params
+    const { product } = route.params 
+
     return (
         <View style={styles.detailScreen}>
             <View style={styles.titleAndFav}>
                 <Text style={styles.detailTitle}>{product.name}</Text>
-                <Ionicons style={styles.favIcon} name="heart-outline" size={24} color={colors.color4}/>
+                <TouchableOpacity style={styles.favIcon}>
+                    <Ionicons style={styles.favIcon} name="heart-outline" size={24} color={colors.color4}/>
+                </TouchableOpacity>
             </View>
             <Image style={styles.detailImage} source={{uri: product.imageUrl}}/>
             <Text style={styles.detailDescription}>{product.description}</Text>

@@ -11,16 +11,18 @@ const Stack = createNativeStackNavigator()
 
 const Navigator = () => {
 
-    const [filteredProducts, setFilteredProducts] = useState([])
+    const [searchFilteredProducts, setSearchFilteredProducts] = useState([])
     const [searchQuery, setSearchQuery] = useState('')
 
     return (
             <Stack.Navigator initialRouteName="Home">    
-                <Stack.Screen name="Home" options={({navigation}) => ({header: ()=> <Header navigation={navigation} setFilteredProducts={setFilteredProducts} setSearchQuery={setSearchQuery} searchQuery={searchQuery}/>})}>
-                {props => <Home {...props} filteredProducts={filteredProducts} searchQuery={searchQuery}/>} 
+                <Stack.Screen name="Home" options={({navigation}) => ({header: ()=> <Header navigation={navigation} setSearchFilteredProducts={setSearchFilteredProducts} setSearchQuery={setSearchQuery} searchQuery={searchQuery}/>})}>
+                    {props => <Home {...props} searchFilteredProducts={searchFilteredProducts} searchQuery={searchQuery}/>} 
                 </Stack.Screen>
-                <Stack.Screen name="Products" component={Products} options={({navigation}) => ({header: ()=> <Header navigation={navigation} />})}/>
-                <Stack.Screen name="ProductDetail" component={ProductDetail} options={({navigation}) => ({header: ()=> <Header navigation={navigation} />})}/>
+                <Stack.Screen name="Products" options={({navigation}) => ({header: ()=> <Header navigation={navigation} setSearchFilteredProducts={setSearchFilteredProducts} setSearchQuery={setSearchQuery} searchQuery={searchQuery}/>})}>
+                    {props => <Products {...props} searchFilteredProducts={searchFilteredProducts} searchQuery={searchQuery}/>}
+                </Stack.Screen>
+                <Stack.Screen name="ProductDetail" component={ProductDetail} options={({navigation}) => ({header: ()=> <Header navigation={navigation}/>})}/>
             </Stack.Navigator>
     )
 }
@@ -29,3 +31,4 @@ export default Navigator
 
 const styles = StyleSheet.create({
 })
+

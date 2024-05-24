@@ -4,6 +4,14 @@ import React from 'react'
 import MainNavigator from './src/Navigation/MainNavigator';
 import { Provider } from 'react-redux';
 import store from './src/Store'
+import { initSQL } from './src/Persistence';
+
+(async ()=> {
+  try {
+      const response = await initSQL()
+  } catch (error) {
+  }
+})()
 
 export default function App() {
   return (

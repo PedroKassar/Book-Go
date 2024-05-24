@@ -5,7 +5,7 @@ import { colors } from '../Constants/colors'
 import SubCategory from '../Components/SubCategory'
 import { useGetSubCategoriesByCategoryQuery, useGetProductsByCategoryQuery } from '../Services/shopApi'
 
-const Products = ({navigation, route, }) => {
+const Products = ({navigation, route, searchQuery, searchFilteredProducts}) => {
 
     const {category} = route.params
     const [selectedSubCategory, setSelectedSubCategory] = useState(null);
@@ -15,15 +15,6 @@ const Products = ({navigation, route, }) => {
     const subCategories = subCategoriesQuery.data ?? []
     const products = productsQuery.data ?? []
     const filteredProducts = selectedSubCategory ? products.filter(product => product.category === category && product.subCategory === selectedSubCategory) : products.filter(product => product.category === category)
-        
-    useEffect(() => {
-        if (subCategoriesQuery.error) {
-            console.error('Error fetching subCategories:', subCategoriesQuery.error)
-        }
-        if (productsQuery.error) {
-            console.error('Error fetching products:', productsQuery.error)
-        }
-    }, [subCategoriesQuery.error, productsQuery.error])
 
     const handleSubCategoryPress = (subCategoryName, selected) =>{
         if (selected) {
@@ -36,19 +27,31 @@ const Products = ({navigation, route, }) => {
 
     return (
         <View>
-            <FlatList style={styles.subCategoriesContainer}
-                data={subCategories}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={({item}) => <SubCategory subCategory={item} onPress={handleSubCategoryPress} selected={item.name === selectedSubCategory}/>}
-                keyExtractor={item => item.id.toString()}
+            {!searchQuery &&(            
+                <FlatList style={styles.subCategoriesContainer}
+                    data={subCategories}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    renderItem={({item}) => <SubCategory subCategory={item} onPress={handleSubCategoryPress} selected={item.name === selectedSubCategory}/>}
+                    keyExtractor={item => item.id.toString()}
                 />
-            <FlatList style={styles.productsContainer}
-                data={filteredProducts}
-                showsVerticalScrollIndicator={false}
-                renderItem={({item}) => <ProductCard product={item} navigation={navigation}/>}
-                keyExtractor={item => item.id.toString()}
-            />
+            )}
+            {!searchQuery &&(            
+                <FlatList style={styles.productsContainer}
+                    data={filteredProducts}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({item}) => <ProductCard product={item} navigation={navigation}/>}
+                    keyExtractor={item => item.id.toString()}
+                />
+            )}
+            {searchQuery &&(
+                <FlatList
+                    data={searchFilteredProducts}
+                    renderItem={({item}) => <ProductCard product={item} navigation={navigation}/>}
+                    keyExtractor={item => item.id.toString()}
+                    numColumns={1}
+                />
+            )}
         </View>
     )
 }

@@ -4,19 +4,19 @@ import { MaterialIcons, EvilIcons, AntDesign } from '@expo/vector-icons';
 import { colors } from '../Constants/colors';
 import { useGetProductsQuery } from '../Services/shopApi';
 
-const Header = ({navigation, setFilteredProducts, setSearchQuery, searchQuery}) => {
+const Header = ({navigation, setSearchFilteredProducts, setSearchQuery, searchQuery}) => {
     
     const {data: products, error, isLoading} = useGetProductsQuery()
     const goBackButton = navigation.canGoBack()
 
     const handleSearch = (text) => {
         setSearchQuery(text)
-        const filteredProducts = products.filter(product => {
+        const searchFilteredProducts = products.filter(product => {
             const productName = product.name.toLowerCase()
             const searchLetters = text.toLowerCase()
             return productName.startsWith(searchLetters)
         })
-        setFilteredProducts(filteredProducts)
+        setSearchFilteredProducts(searchFilteredProducts)
     }
 
     return (
