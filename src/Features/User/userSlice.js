@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
 
 export const authSlice = createSlice({
     name: "auth",
@@ -6,7 +6,8 @@ export const authSlice = createSlice({
         value: {
             user: null,
             token: null,
-            localId: null
+            localId: null,
+            favorites: [],
         }
     },
     reducers: {
@@ -18,10 +19,18 @@ export const authSlice = createSlice({
         clearUser: (state) => {
             state.value.user = null
             state.value.token = null
-        }
+            state.value.localId = null
+            state.value.favorites = []
+        },
+        addToFavorites: (state, action) => {
+            state.value.favorites.push(action.payload.product)
+        },
+        removeFromFavorites: (state, action) => {
+            state.value.favorites = state.value.favorites.filter((item) => item.id !== action.payload.productId)
+        },
     }
 })
 
-export const {setUser, clearUser} = authSlice.actions
+export const { setUser, clearUser, addToFavorites, removeFromFavorites } = authSlice.actions
 
 export default authSlice.reducer

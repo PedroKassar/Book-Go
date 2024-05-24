@@ -2,16 +2,38 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { colors } from '../Constants/colors'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToFavorites, removeFromFavorites } from '../Features/User/userSlice'
 
-const ProductDetail = ({route}) => {
-    const { product } = route.params 
+const ProductDetail = ({ route }) => {
+    const { product } = route.params
+    const dispatch = useDispatch()
+    const { favorites, user } = useSelector((state) => state.auth.value)
+
+    const isFavorite = favorites.some((item) => item.id === product.id)
+
+    const toggleFavorite = () => {
+        if (!user) {
+            alert("Usuario no autenticado. Debes iniciar sesión para añadir a favoritos.")
+            return
+        }
+        if (isFavorite) {
+            dispatch(removeFromFavorites({ productId: product.id }))
+        } else {
+            dispatch(addToFavorites({ product: product }))
+        }
+    }
 
     return (
         <View style={styles.detailScreen}>
             <View style={styles.titleAndFav}>
                 <Text style={styles.detailTitle}>{product.name}</Text>
-                <TouchableOpacity style={styles.favIcon}>
-                    <Ionicons style={styles.favIcon} name="heart-outline" size={24} color={colors.color4}/>
+                <TouchableOpacity style={styles.favIcon} onPress={toggleFavorite}>
+                    <Ionicons
+                        name={isFavorite ? "heart-sharp" : "heart-outline"}
+                        size={24}
+                        color={isFavorite ? colors.color2 : colors.color4}
+                    />
                 </TouchableOpacity>
             </View>
             <Image style={styles.detailImage} source={{uri: product.imageUrl}}/>
@@ -24,7 +46,7 @@ const ProductDetail = ({route}) => {
 export default ProductDetail
 
 const styles = StyleSheet.create({
-    detailScreen:{
+        detailScreen:{
         flex: 1,
     },
     detailTitle:{

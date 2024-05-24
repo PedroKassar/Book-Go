@@ -1,8 +1,8 @@
 import { StyleSheet, View, TextInput, TouchableOpacity, Text } from 'react-native'
 import React, { useState } from 'react'
-import { MaterialIcons, EvilIcons, AntDesign } from '@expo/vector-icons';
-import { colors } from '../Constants/colors';
-import { useGetProductsQuery } from '../Services/shopApi';
+import { MaterialIcons, EvilIcons, AntDesign } from '@expo/vector-icons'
+import { colors } from '../Constants/colors'
+import { useGetProductsQuery } from '../Services/shopApi'
 
 const Header = ({navigation, setSearchFilteredProducts, setSearchQuery, searchQuery}) => {
     

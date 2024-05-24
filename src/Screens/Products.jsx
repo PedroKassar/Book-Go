@@ -8,7 +8,7 @@ import { useGetSubCategoriesByCategoryQuery, useGetProductsByCategoryQuery } fro
 const Products = ({navigation, route, searchQuery, searchFilteredProducts}) => {
 
     const {category} = route.params
-    const [selectedSubCategory, setSelectedSubCategory] = useState(null);
+    const [selectedSubCategory, setSelectedSubCategory] = useState(null)
     const subCategoriesQuery = useGetSubCategoriesByCategoryQuery(category)
     const productsQuery = useGetProductsByCategoryQuery(category)
 

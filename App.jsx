@@ -1,10 +1,10 @@
-import { StyleSheet, Platform, StatusBar, View } from 'react-native';
-import { colors } from './src/Constants/colors';
-import React from 'react'
-import MainNavigator from './src/Navigation/MainNavigator';
-import { Provider } from 'react-redux';
+import { StyleSheet, Platform, StatusBar, View } from 'react-native'
+import { colors } from './src/Constants/colors'
+import React, { useEffect } from 'react'
+import MainNavigator from './src/Navigation/MainNavigator'
+import { Provider } from 'react-redux'
 import store from './src/Store'
-import { initSQL } from './src/Persistence';
+import { initSQL } from './src/Persistence'
 
 (async ()=> {
   try {
@@ -20,7 +20,7 @@ export default function App() {
         <MainNavigator/>
       </Provider>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
