@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import MapView, {Marker} from 'react-native-maps'
 import * as Location from 'expo-location'
 import { useGetProductsQuery } from '../Services/shopApi'
-import { colors } from '../Constants/colors'
 
 const Map = () => {
     const [location, setLocation] = useState(null)
@@ -32,7 +31,7 @@ const Map = () => {
             <MapView style={styles.map} initialRegion={{latitude: location.coords.latitude, longitude: location.coords.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421}} showsUserLocation={true}>
                 {products && products.map(product => (
                     product.latitude && product.longitude && (
-                    <Marker key={product.id} coordinate={{latitude: product.latitude, longitude: product.longitude}} title={product.name}/>
+                    <Marker key={product.id} coordinate={{latitude: product.latitude, longitude: product.longitude}} title={product.name} image={require('../../assets/pinMarker.png')} style={{width: 4, height: 4}}/>
                 )))}
             </MapView>
         </View>
@@ -55,8 +54,6 @@ const styles = StyleSheet.create({
         height: "95%",
         alignSelf: "center",
         borderRadius: 5,
-        // borderWidth: 1,
-        // borderColor: colors.color2
     },
     loading:{
         flex: 1,
