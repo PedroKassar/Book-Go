@@ -1,4 +1,4 @@
-import { configureStore, createReducer } from "@reduxjs/toolkit"
+import { configureStore } from "@reduxjs/toolkit"
 import { shopApi } from "../Services/shopApi"
 import { setupListeners } from "@reduxjs/toolkit/query"
 import { authApi } from "../Services/authApi"

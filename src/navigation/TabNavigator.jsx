@@ -4,7 +4,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Navigator from './Navigator'
 import { Ionicons } from '@expo/vector-icons'
 import { colors } from '../Constants/colors'
-import Notifications from './Notifications'
 import Favorites from './Favorites'
 import User from './User'
 
@@ -15,7 +14,6 @@ const TabNavigator = () => {
             <Tab.Navigator screenOptions={{tabBarShowLabel: false, headerShown: false, tabBarStyle: styles.tabBar}}>
                 <Tab.Screen name="Navigator" component={Navigator} options={{tabBarIcon: ({focused})=>(<Ionicons name={focused ? "home-sharp" : "home-outline"} size={24} color={colors.color2}/>)}}/>
                 <Tab.Screen name="Favorites" component={Favorites} options={{tabBarIcon: ({focused})=>(<Ionicons name={focused ? "heart-sharp" : "heart-outline"} size={24} color={colors.color2}/>)}}/>
-                <Tab.Screen name="Notifications" component={Notifications} options={{tabBarIcon: ({focused})=>(<Ionicons name={focused ? "notifications-sharp" : "notifications-outline"} size={24} color={colors.color2}/>)}}/>
                 <Tab.Screen name="User" component={User} options={{tabBarIcon: ({focused})=>(<Ionicons name={focused ? "person" : "person-outline"} size={24} color={colors.color2}/>)}}/>
             </Tab.Navigator>
     )

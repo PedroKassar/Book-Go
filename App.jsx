@@ -1,6 +1,6 @@
 import { StyleSheet, Platform, StatusBar, View } from 'react-native'
 import { colors } from './src/Constants/colors'
-import React, { useEffect } from 'react'
+import React from 'react'
 import MainNavigator from './src/Navigation/MainNavigator'
 import { Provider } from 'react-redux'
 import store from './src/Store'

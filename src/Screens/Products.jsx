@@ -1,5 +1,5 @@
 import { FlatList, StyleSheet, View } from 'react-native'
-import React, {useEffect, useState} from 'react'
+import React, { useState } from 'react'
 import ProductCard from '../Components/ProductCard'
 import { colors } from '../Constants/colors'
 import SubCategory from '../Components/SubCategory'
