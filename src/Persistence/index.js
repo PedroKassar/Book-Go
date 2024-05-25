@@ -12,7 +12,7 @@ export const initSQL = () => {
                 (_, error) => reject(error)
             )
             tx.executeSql(
-                "CREATE TABLE IF NOT EXISTS favorites (id TEXT PRIMARY KEY NOT NULL, product TEXT NOT NULL, userId TEXT NOT NULL)",
+                "CREATE TABLE IF NOT EXISTS favorites (id TEXT PRIMARY KEY NOT NULL, product TEXT NOT NULL, userId TEXT NOT NULL, PRIMARY KEY (id, userId))",
                 [],
                 (_, result) => resolve(result),
                 (_, error) => reject(error)
@@ -109,3 +109,4 @@ export const removeFavorite = (productId, userId) => {
     })
     return promise
 }
+

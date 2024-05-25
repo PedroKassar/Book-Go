@@ -25,8 +25,9 @@ export const authSlice = createSlice({
         },
         addToFavorites: (state, action) => {
             const userId = state.value.localId
-            state.value.favorites.push(action.payload.product)
-            insertFavorite(action.payload.product, userId).catch(error => alert(error))
+            const newProduct = action.payload.product
+            state.value.favorites.push(newProduct)
+            insertFavorite(newProduct, userId).catch(error => alert(error))
         },
         removeFromFavorites: (state, action) => {
             const userId = state.value.localId
