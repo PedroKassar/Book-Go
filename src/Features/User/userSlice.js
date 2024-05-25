@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { insertFavorite, removeFavorite } from "../../Persistence"
 
 export const authSlice = createSlice({
     name: "auth",
@@ -23,14 +24,21 @@ export const authSlice = createSlice({
             state.value.favorites = []
         },
         addToFavorites: (state, action) => {
+            const userId = state.value.localId
             state.value.favorites.push(action.payload.product)
+            insertFavorite(action.payload.product, userId).catch(error => alert(error))
         },
         removeFromFavorites: (state, action) => {
+            const userId = state.value.localId
             state.value.favorites = state.value.favorites.filter((item) => item.id !== action.payload.productId)
+            removeFavorite(action.payload.productId, userId).catch(error => alert(error))
         },
+        setFavorites: (state, action) => {
+            state.value.favorites = action.payload
+        }
     }
 })
 
-export const { setUser, clearUser, addToFavorites, removeFromFavorites } = authSlice.actions
+export const { setUser, clearUser, addToFavorites, removeFromFavorites, setFavorites } = authSlice.actions
 
 export default authSlice.reducer

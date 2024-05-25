@@ -19,7 +19,7 @@ const User = () => {
         } catch(error){
 
         }
-    }
+    }    
 
     return (
         <View style={styles.userContainer}>

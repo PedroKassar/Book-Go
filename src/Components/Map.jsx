@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import MapView, {Marker} from 'react-native-maps'
 import * as Location from 'expo-location'
 import { useGetProductsQuery } from '../Services/shopApi'
+import { colors } from '../Constants/colors'
 
 const Map = () => {
     const [location, setLocation] = useState(null)
@@ -43,17 +44,19 @@ export default Map
 const styles = StyleSheet.create({
     mapContainer:{
         flex: 1,
+        elevation: 4,
+        shadowColor: 'black',
+        shadowOpacity: 0.4,
+        shadowOffset: { width: 1, height: 1 },
+        shadowRadius: 3,
     },
     map:{
         width: "95%",
         height: "95%",
         alignSelf: "center",
         borderRadius: 5,
-        elevation: 5,
-        shadowColor: 'black',
-        shadowOpacity: 0.5,
-        shadowOffset: { width: 1, height: 2 },
-        shadowRadius: 5,
+        // borderWidth: 1,
+        // borderColor: colors.color2
     },
     loading:{
         flex: 1,

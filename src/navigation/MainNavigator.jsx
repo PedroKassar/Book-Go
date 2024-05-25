@@ -4,12 +4,12 @@ import { NavigationContainer } from '@react-navigation/native'
 import AuthStack from './AuthStack'
 import TabNavigator from './TabNavigator'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchSession } from '../Persistence'
-import { setUser } from '../Features/User/userSlice'
+import { fetchSession, fetchFavorites } from '../Persistence'
+import { setUser, setFavorites } from '../Features/User/userSlice'
 
 const MainNavigator = () => {
     const dispatch = useDispatch()
-    const {user} = useSelector(state => state.auth.value)
+    const localId = useSelector((state) => state.auth.value.localId)
 
     useEffect(()=> {
         (async ()=> {
@@ -23,10 +23,17 @@ const MainNavigator = () => {
                         idToken: user.token
                     }))
                 }
+                if (localId) {
+                    const favResponse = await fetchFavorites(localId)
+                    if (favResponse.rows._array.length) {
+                        const favorites = favResponse.rows._array.map(item => JSON.parse(item.product))
+                        dispatch(setFavorites(favorites))
+                    }
+                }
             } catch (error) {
             }   
         })()
-    }, [])
+    }, [dispatch, localId])
 
     return (
         <NavigationContainer>

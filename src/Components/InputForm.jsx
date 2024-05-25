@@ -12,7 +12,6 @@ const InputForm = ({label, onChange, error = "", isSecure = false,}) => {
 
     return (
         <View style={styles.inputContainer}>
-            {/* <Text>{label}</Text> */}
             <TextInput style={styles.input}
                 placeholder={label}
                 value={input}
