@@ -1,4 +1,4 @@
-import { TouchableOpacity, StyleSheet, Text, View, useAnimatedValue } from 'react-native'
+import { TouchableOpacity, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { colors } from '../Constants/colors'
 import InputForm from '../Components/InputForm'
@@ -14,6 +14,7 @@ const Login = ({navigation}) => {
     const [triggerSignIn, result] = useLoginMutation()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
+    const [error, setError] = useState('')
 
     useEffect(() => {
         if (result?.data && result.isSuccess) {
@@ -33,10 +34,13 @@ const Login = ({navigation}) => {
                 })
                 .catch((err) => {
                 })
+        } else if (result?.error) {
+            setError(result.error.message || "email o contraseña incorrecto")
         }
     }, [result])
 
     const onSubmit = () => {
+        setError('')
         triggerSignIn({email, password})
     }
 
@@ -55,6 +59,7 @@ const Login = ({navigation}) => {
                     error={""}
                     isSecure={true}
                 />
+                {error ? <Text style={styles.errorText}>{error}</Text> : null}
                 <SubmitButton
                     onPress={onSubmit}
                     title = "Login"
@@ -104,5 +109,10 @@ const styles = StyleSheet.create({
     toSignUpButton:{
         paddingHorizontal: 10,
         color: colors.color2
+    },
+    errorText: {
+        color: 'red',
+        textAlign: 'center',
+        marginTop: 10,
     }
 })
